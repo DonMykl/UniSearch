@@ -1,7 +1,7 @@
 package com.donmykl.unisearch.model
 
 data class University(
-    val name : String,
-    val location : String,
-    val website : String,
+    val name : String? = null,
+    val location : String? = null,
+    val website : String? = null,
 )
