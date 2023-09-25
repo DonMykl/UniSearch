@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UniSearch</string>
+    <string name="university_name">University</string>
+    <string name="university_country">Country</string>
+    <string name="university_website">Website</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
