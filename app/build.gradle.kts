@@ -51,9 +51,13 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.recyclerview)
+    // Retrofit library
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation (libs.gson)
+    implementation (libs.logging.interceptor)
+    implementation (libs.picasso)
 }

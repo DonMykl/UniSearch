@@ -8,14 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.donmykl.unisearch.R
 import com.donmykl.unisearch.model.University
 
-class UniversityAdapter(
-    var unis: List<University>
-) : RecyclerView.Adapter<UniversityAdapter.UniversityViewholder>() {
+class UniversityAdapter(private val unis: List<University>) :
+    RecyclerView.Adapter<UniversityAdapter.UniversityViewholder>() {
 
-    inner class UniversityViewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val uniName: TextView = itemView.findViewById(R.id.tvUniName)
-        val uniLocation: TextView = itemView.findViewById(R.id.tvUniCountry)
-        val uniWebsite: TextView = itemView.findViewById(R.id.tvUniWebsite)
+    inner class UniversityViewholder(val itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(university: University) {
+            val uniName: TextView = itemView.findViewById(R.id.tvUniName)
+            val uniCountry: TextView = itemView.findViewById(R.id.tvUniCountry)
+            val uniWebsite: TextView = itemView.findViewById(R.id.tvUniWebsite)
+
+            uniName.text= university.name
+            uniCountry.text=university.country
+            uniWebsite.text=university.website.toString()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UniversityViewholder {
@@ -25,14 +30,11 @@ class UniversityAdapter(
     }
 
     override fun onBindViewHolder(holder: UniversityViewholder, position: Int) {
-        holder.apply {
-            uniName.text = unis[position].name
-            uniLocation.text = unis[position].location
-            uniWebsite.text = unis[position].website
-        }
+        holder.bind(unis[position])
     }
 
     override fun getItemCount(): Int {
         return unis.size
     }
+
 }

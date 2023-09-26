@@ -1,7 +1,16 @@
 package com.donmykl.unisearch.model
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
 data class University(
-    val name : String? = null,
-    val location : String? = null,
-    val website : String? = null,
+    @Expose
+    @SerializedName("name")
+    val name : String,
+    @Expose
+    @SerializedName("country")
+    val country : String,
+    @Expose
+    @SerializedName("web_pages")
+    val website : List<String>
 )
