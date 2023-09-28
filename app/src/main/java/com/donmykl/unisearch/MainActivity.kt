@@ -1,5 +1,6 @@
 package com.donmykl.unisearch
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , UniversityAdapter.UniversityListener {
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: UniversityAdapter
     var datalist = ArrayList<University>()
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.list_item)
-        recyclerView.adapter = UniversityAdapter(datalist)
+        recyclerView.adapter = UniversityAdapter(datalist,this)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         getUniData()
     }
@@ -42,5 +43,12 @@ class MainActivity : AppCompatActivity() {
                 t.printStackTrace()
             }
         })
+    }
+
+
+    override fun onItemClick(websites: List<String>) {
+        val intent = Intent(baseContext,WebViewActivity::class.java)
+        intent.putExtra("url",websites[0])
+        startActivity(intent)
     }
 }

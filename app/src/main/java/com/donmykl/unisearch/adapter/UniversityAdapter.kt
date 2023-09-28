@@ -1,5 +1,6 @@
 package com.donmykl.unisearch.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.donmykl.unisearch.R
 import com.donmykl.unisearch.model.University
 
-class UniversityAdapter(private val unis: List<University>) :
+class UniversityAdapter(private val unis: List<University>, val listener: UniversityListener) :
     RecyclerView.Adapter<UniversityAdapter.UniversityViewholder>() {
 
     inner class UniversityViewholder(val itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(university: University) {
+        fun bind(university: University, listener:UniversityListener) {
             val uniName: TextView = itemView.findViewById(R.id.tvUniName)
             val uniCountry: TextView = itemView.findViewById(R.id.tvUniCountry)
             val uniWebsite: TextView = itemView.findViewById(R.id.tvUniWebsite)
@@ -20,6 +21,9 @@ class UniversityAdapter(private val unis: List<University>) :
             uniName.text= university.name
             uniCountry.text=university.country
             uniWebsite.text=university.website.toString()
+
+            uniWebsite.setOnClickListener { listener.onItemClick(university.website) }
+
         }
     }
 
@@ -30,11 +34,16 @@ class UniversityAdapter(private val unis: List<University>) :
     }
 
     override fun onBindViewHolder(holder: UniversityViewholder, position: Int) {
-        holder.bind(unis[position])
+        holder.bind(unis[position],listener)
+
     }
 
     override fun getItemCount(): Int {
         return unis.size
+    }
+
+    interface UniversityListener{
+        fun onItemClick(websites: List<String>)
     }
 
 }
