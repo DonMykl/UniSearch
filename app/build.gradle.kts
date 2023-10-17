@@ -60,4 +60,5 @@ dependencies {
     implementation (libs.gson)
     implementation (libs.logging.interceptor)
     implementation (libs.picasso)
+    implementation(libs.kotlinx.coroutines.android)
 }
