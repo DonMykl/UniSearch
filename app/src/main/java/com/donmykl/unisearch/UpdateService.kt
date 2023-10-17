@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
@@ -23,19 +24,21 @@ class UpdateService: Service() {
 
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
+
             }
         }, 0, 10000)
     }
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val input = intent?.getStringExtra("inputExtra")
+       // val input = intent?.getStringExtra("inputExtra")
         createNotificationChannel()
         val notificationIntent = Intent(this,MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0,notificationIntent,
             PendingIntent.FLAG_IMMUTABLE)
+
         val notification = NotificationCompat.Builder(this, "update_channel")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Updating Universities")
-            .setContentText(input)
+            .setContentText("This is my noti")
             .setContentIntent(pendingIntent)
             .build()
 
